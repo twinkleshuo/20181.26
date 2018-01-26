@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	div{width:300px; height:500px; border:20px solid #000;background: url(img/2.jpg) no-repeat; border-radius:20px; position:relative;}
+	ul , p { padding:0; margin:0; }
+	li { list-style:none; }
+	#list { width:260px; margin:0 auto;}
+	#list p { height:50px; line-height:50px; text-indent:20px; background:rgba(0,0,0,.5); color:#0C6; cursor:pointer; text-align:center; margin:10px auto 0;}
+	#list p:hover{background:rgba(0,0,0,.8); color:#fff;}
+	#list .active { background:rgba(0,0,0,.8); color:#fff; }
+	#list ul { display:none; background:rgba(0,0,0,.5); }
+	#list ul li { line-height:30px; text-align:center; cursor:pointer;  color:#fff;}
+	#list ul li:hover{background:rgba(0,0,0,.8); color:#693;}
+	#list ul .hover { background:rgba(0,0,0,.8); }
+</style>
+<script>
+window.onload = function (){
+	var oUl = document.getElementById('list');
+	var ap = oUl.getElementsByTagName('p');
+	var aUl = oUl.getElementsByTagName('ul');
+	var aLi = null;
+	var arrLi = [];
+	
+	for( var i=0; i<ap.length; i++ ){
+		ap[i].index = i;
+		ap[i].onclick = function (){
+			
+			for( var i=0; i<ap.length; i++ ){
+				if( i != this.index ){
+					aUl[i].style.display = 'none';
+					ap[i].className = '';
+				}
+			}
+			
+			if( this.className == '' ){
+				aUl[this.index].style.display = 'block';
+				this.className = 'active';
+			} else {
+				aUl[this.index].style.display = 'none';
+				this.className = '';
+			}
+		};
+	}
+	
+	for( var i=0; i<aUl.length; i++ ){
+		aLi = aUl[i].getElementsByTagName('li');
+		for( var j=0; j<aLi.length; j++ ){
+			arrLi.push( aLi[j] );
+		}
+	}
+	
+	
+	
+	for( var i=0; i<arrLi.length; i++ ){
+		arrLi[i]. onclick = function (){
+			
+			for( var i=0; i<arrLi.length; i++ ){
+				if( arrLi[i] !=this ){
+					arrLi[i].className = '';
+				}
+			}
+			if( this.className == '' ){
+				this.className = 'hover';
+			}else{
+				this.className = '';
+			}
+		};
+	}
+	
+	
+};
+</script>
+</head>
+
+<body>
+	<div id="phone">
+    	<ul id="list">
+        
+        	<li class="list">
+            	<p >我的好友</p>
+            	<ul id="friend">
+                	<li>奥巴马</li>
+                    <li>习近平</li>
+                    <li>萨科齐</li>
+                    <li>布莱尔</li>
+                    <li>毛泽东</li>
+                </ul>
+            </li>
+            
+            <li class="list1">
+            	<p id="p2">企业好友</p>
+            	<ul>
+                	<li>比尔盖茨</li>
+                    <li>卡内基</li>
+                    <li>巴菲特</li>
+                    <li>李嘉诚</li>
+                    <li>王健林</li>
+                </ul>
+            </li>
+            
+            <li id="list2">
+            	<p id="p3">黑名单</p>
+            	<ul>
+                	<li>王珊珊</li>
+                    <li>贺一楠</li>
+                    <li>王奇玮</li>
+                </ul>
+            </li>
+            
+        </ul>
+     
+        
+    </div>
+</body>
+</html>

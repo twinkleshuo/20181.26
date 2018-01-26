@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<style>
+	img{width:300px; height:300px;}
+	#box{width:300px; height:300px; border:50px solid #000;overflow:hidden;  position:relative; margin:50px auto;}
+	#scroll{  width:1200px; overflow: hidden; transition:1s;}
+	#right{width:50px; line-height:50px; color:#fff; background:rgba(0,0,0,.7); position:absolute; top:130px;right:0px; text-align:center; font-size:30px; cursor:pointer;}
+	#left{width:50px; line-height:50px; color:#fff; background:rgba(0,0,0,.7); position:absolute; top:130px; left:0px; text-align:center;font-size:30px; cursor:pointer;}
+	p{position:absolute; top:5px; left:130px; line-height:10px; color:#fff;}
+	span{position:absolute; bottom:5px; left:110px;color:#fff; line-height:30px; }
+</style>
+<script>
+	window.onload=function(){
+			var oBox=document.getElementById('box')
+			var scorllBox=document.getElementById("scroll")
+			var oRight=document.getElementById('right')
+			var oLeft=document.getElementById('left')
+			var imgs = document.querySelectorAll('img');
+			var index=0;
+			
+			oRight.onclick=function(){
+				 	index++;
+        			if(index>imgs.length-1) index = 0;
+        			scorllBox.style.marginLeft = '-'+(300*index)+'px';
+				};
+			oLeft.onclick=function(){
+				 	index--;
+        			if(index>0) index = 0;
+        			scorllBox.style.marginRight= '-'+(300*index)+'px';
+				};
+		};
+</script>
+
+<body>
+	<div id="box">
+    	<div id="scroll">
+            <img id="img1"src="img/1.jpg">
+            <img  id="img2"src="img/2.jpg">
+            <img  id="img3"src="img/3.jpg">
+            <img  id="img4"src="img/4.jpg">
+            <div id="right">></div>
+            <div id="left"><</div>
+            <p>1/4</p>
+            <span>文字描述</span>
+        </div>
+    </div>
+</body>
+</html>

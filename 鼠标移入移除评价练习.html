@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	div{width:300px; height:100px; border:1px solid #000; margin:100px auto 0; padding-top:100px; text-align:center;}
+	span{height:20px; width:20px; border:1px solid #ccc; display:inline-block; border-radius:10px; vertical-align:middle; cursor:pointer;}	
+	em{height:20px; width:35px; display:inline-block; background:red; color:#fff; text-align:center; line-height:20px; font-size:12px; vertical-align:middle; border-radius:5px; font-style:normal;}
+</style>
+<script>
+
+    var emArr = ['极差','一般','不错','推荐','力推'];
+    var btnsCurrSite = -1;
+    var btns = document.querySelectorAll('span');
+    var em = document.querySelector('em');
+
+    //遍历所有的圆点元素
+    for(var i=0;i<btns.length;i++){
+
+        //给所有星星添加一个下标信息
+        btns[i].index = i;
+
+        //移入事件
+        btns[i].onmouseover = function(){
+            //设置一批星星变色
+            //从0到鼠标移入的星星下标位置
+            for(var i=0;i<=this.index;i++){
+                //如果星星位置小于等于1 用 pink
+                //否则（大于1的）用 red
+                if(this.index<=1){
+                    btns[i].style.color = 'pink';
+                }else{
+                    btns[i].style.color = 'red';
+                }
+//                starBox[i].style.color = 'red';
+            }
+            //清除右边的颜色
+            for(var i=this.index+1;i<btns.length;i++){
+                btns[i].style.color = '';
+            }
+
+            //要显示的描述文字
+            em.innerHTML = emArr[this.index];
+            em.style.opacity = 1;
+
+        };
+
+        //移出事件
+        btns[i].onmouseout = function(){
+            //移出的时候要清空星星的颜色
+            for(var i=0;i<btns.length;i++){
+                btns[i].style.color = '';
+            }
+            em.style.opacity = 0;
+
+
+            //看看有没有被点击过的星星
+            //发现有点击的位置信息
+            if(btnsCurrSite>-1){
+                for(var i=0;i<=btnsCurrSite;i++){
+                    //如果星星位置小于等于1 用 pink
+                    //否则（大于1的）用 red
+                    if(btnsCurrSite<=1){
+                        btns[i].style.color = 'pink';
+                    }else{
+                        btns[i].style.color = 'red';
+                    }
+                }
+                //要显示的描述文字
+                em.innerHTML = emArr[btnsCurrSite];
+                em.style.opacity = 1;
+            }
+        };
+
+        //点击事件
+        btns[i].onclick = function(){
+            btnsCurrSite = this.index;
+        };
+    }
+
+
+
+
+
+
+</script>
+
+</head>
+
+<body>
+	<div>
+    	<span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <em>极差</em>
+    </div>
+</body>
+</html>
